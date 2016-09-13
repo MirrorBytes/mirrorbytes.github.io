@@ -1,59 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		
-		<title>Pure CSS3 Masonry Layout - Portfolio</title>
-		
-		<link rel="icon" href="data:;base64,iVBORw0KGgo=" />
-		
-		<!-- CSS Dependencies -->
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" />
-		
-		<!-- Application CSS -->
-		<link rel="stylesheet" href="../../css/style.css" />	</head>
-
-	<body>
-		<main id="app">
-			<nav id="main-nav">
-				<input id="main-nav-toggle" type="checkbox" />
-				<label for="main-nav-toggle">
-					<span></span>
-				</label>
-				
-				<ul>
-					<li><a href="../../">⌂</a></li>
-					<li><a href="../../tutorials/" class="active">Tutorials</a></li>
-					<li><a href="http://codepen.io/MirrorBytes/">My CodePen</a></li>
-					<li><a href="https://github.com/MirrorBytes">My GitHub</a></li>
-				</ul>
-			</nav>
-			<div id="content">
-				<h3>Pure CSS3 Masonry Layout</h3>
-
-						<div id="media">
-							<img class="ratio" src="http://placehold.it/16x9" />
-							<iframe src="https://www.youtube.com/embed/oKR5kwLP350" frameborder="0" allowfullscreen></iframe>
-						</div>
-				
-				<p class="drop-cap">Just to explain this tutorial a bit more in detail, I&#39;m writing it up.  With CSS3, interesting layouts such as this one can be created with little to no frustration.  Trust me when I say this, it takes 19 lines of CSS to accomplish the Masonry layout. That&#39;s it!</p>
-
-<p>I will also be showing you how to break the flow of the Masonry layout with Flexbox clusters.  This small, yet effective, addition will allow for a more interesting design of the data you are presenting.  It is definitely worth looking into, but it is not necessary for this tutorial.  Here are the pages I referenced while making this tutorial:</p>
-<ul>
-<li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A Complete Guide to Flexbox</a></li>
-<li><a href="http://www.sketchingwithcss.com/samplechapter/cheatsheet.html">The Ultimate Flexbox Cheatsheet</a></li>
-</ul>
-<p>Time to move into the actual tutorial!</p>
-<hr>
-<p>For those of you that had not watched the video, or cannot, I shall state that the finished product of this tutorial is ready for production-level projects.  It has an incredibly smooth animation that does not hinder performance in the slightest, and it will not induce any migraines!</p>
-<h6 id="dependency-">Dependency:</h6>
-<ul>
-<li><a href="https://necolas.github.io/normalize.css/">Normalize</a></li>
-</ul>
-<h6 id="my-html5-setup-">My HTML5 Setup:</h6>
-<pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>Pure CSS3 Masonry Layout - Portfolio</title><link rel=icon href="data:;base64,iVBORw0KGgo="><link rel=stylesheet type=text/css href=https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css><link rel=stylesheet href=../../css/style.css></head><body><main id=app><nav id=main-nav><input id=main-nav-toggle type=checkbox><label for=main-nav-toggle><span></span></label><ul><li><a href=../../ >⌂</a></li><li><a href=../../tutorials/ class=active>Tutorials</a></li><li><a href=http://codepen.io/MirrorBytes/ >My CodePen</a></li><li><a href=https://github.com/MirrorBytes>My GitHub</a></li></ul></nav><div id=content><h3>Pure CSS3 Masonry Layout</h3><div id=media><img class=ratio src=https://placehold.it/16x9><iframe src=https://www.youtube.com/embed/oKR5kwLP350 frameborder=0 allowfullscreen></iframe></div><p class=drop-cap>Just to explain this tutorial a bit more in detail, I&#39;m writing it up. With CSS3, interesting layouts such as this one can be created with little to no frustration. Trust me when I say this, it takes 19 lines of CSS to accomplish the Masonry layout. That&#39;s it!</p><p>I will also be showing you how to break the flow of the Masonry layout with Flexbox clusters. This small, yet effective, addition will allow for a more interesting design of the data you are presenting. It is definitely worth looking into, but it is not necessary for this tutorial. Here are the pages I referenced while making this tutorial:</p><ul><li><a href=https://css-tricks.com/snippets/css/a-guide-to-flexbox/ >A Complete Guide to Flexbox</a></li><li><a href=http://www.sketchingwithcss.com/samplechapter/cheatsheet.html>The Ultimate Flexbox Cheatsheet</a></li></ul><p>Time to move into the actual tutorial!</p><hr><p>For those of you that had not watched the video, or cannot, I shall state that the finished product of this tutorial is ready for production-level projects. It has an incredibly smooth animation that does not hinder performance in the slightest, and it will not induce any migraines!</p><h6 id=dependency->Dependency:</h6><ul><li><a href=https://necolas.github.io/normalize.css/ >Normalize</a></li></ul><h6 id=my-html5-setup->My HTML5 Setup:</h6><pre><code class=lang-html>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
         &lt;meta charset=&quot;UTF-8&quot; /&gt;
@@ -67,9 +12,7 @@
 
     &lt;body&gt;&lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-<h6 id="basic-css-">Basic CSS:</h6>
-<pre><code class="lang-css">&lt;style type=&quot;text/css&quot;&gt;
+</code></pre><h6 id=basic-css->Basic CSS:</h6><pre><code class=lang-css>&lt;style type=&quot;text/css&quot;&gt;
     *,
     *::before,
     *::after {
@@ -98,10 +41,7 @@
         overflow-y:auto;
     }
 &lt;/style&gt;
-</code></pre>
-<p>First, throw that into the head.  Second, I use this CSS setup in nearly every one of my projects.  Without this setup, I have found that html and body don&#39;t play nicely together in several situations, considering html likes to do its own thing with overflow.</p>
-<h6 id="initial-testing-markup-">Initial Testing Markup:</h6>
-<pre><code class="lang-html">&lt;article&gt;
+</code></pre><p>First, throw that into the head. Second, I use this CSS setup in nearly every one of my projects. Without this setup, I have found that html and body don&#39;t play nicely together in several situations, considering html likes to do its own thing with overflow.</p><h6 id=initial-testing-markup->Initial Testing Markup:</h6><pre><code class=lang-html>&lt;article&gt;
     &lt;div class=&quot;inner&quot;&gt;
         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -128,9 +68,7 @@
         quis nostrud exercitation.&lt;/p&gt;
     &lt;/div&gt;
 &lt;/article&gt;
-</code></pre>
-<p>This is just a very basic markup to get a general idea of how the layout works.  Add more articles to see how the effect works with a longer page length.  hrow this into the body and look over the remaining CSS.</p>
-<pre><code class="lang-css">@supports (((-webkit-column-width: 17rem) or (-moz-column-width: 17rem) or (column-width: 17rem)) and ((-webkit-column-gap: 0.5rem) or (-moz-column-gap: 0.5rem) or (column-gap: 0.5rem))) {
+</code></pre><p>This is just a very basic markup to get a general idea of how the layout works. Add more articles to see how the effect works with a longer page length. hrow this into the body and look over the remaining CSS.</p><pre><code class=lang-css>@supports (((-webkit-column-width: 17rem) or (-moz-column-width: 17rem) or (column-width: 17rem)) and ((-webkit-column-gap: 0.5rem) or (-moz-column-gap: 0.5rem) or (column-gap: 0.5rem))) {
     #masonry {
         -webkit-column-width:17rem;
         -moz-column-width:17rem;
@@ -151,9 +89,7 @@
 
     display:inline-block; // without this, the columns will flow into the next
 }
-</code></pre>
-<p>Told you, only 19 lines of CSS for the effect to work.  It&#39;s pretty self explanatory, there are no set amount of columns, just sizes and spacing.  Let&#39;s change a block and add a couple to make it a little more attractive:</p>
-<pre><code class="lang-css">#masonry {
+</code></pre><p>Told you, only 19 lines of CSS for the effect to work. It&#39;s pretty self explanatory, there are no set amount of columns, just sizes and spacing. Let&#39;s change a block and add a couple to make it a little more attractive:</p><pre><code class=lang-css>#masonry {
     padding:1rem;
 
     width:100%;
@@ -166,14 +102,7 @@ article p { // adding this one as well
 
     background-color:#EEE;
 }
-</code></pre>
-<p>With a little bit of spacing and a splash of color, our product looks a little nicer.</p>
-<p>That is it for the Masonry layout actually!  Quite easy, right?  If you&#39;d like to learn about the Flexbox clusters, keep reading!</p>
-<hr>
-<h4 id="time-for-flexbox-clusters">Time for Flexbox Clusters</h4>
-<h6 id="cluster-markup-">Cluster Markup:</h6>
-<p>Replace the above initial markup with the following:</p>
-<pre><code class="lang-html">&lt;article&gt; &lt;!-- Flexbox Cluster: column --&gt;
+</code></pre><p>With a little bit of spacing and a splash of color, our product looks a little nicer.</p><p>That is it for the Masonry layout actually! Quite easy, right? If you&#39;d like to learn about the Flexbox clusters, keep reading!</p><hr><h4 id=time-for-flexbox-clusters>Time for Flexbox Clusters</h4><h6 id=cluster-markup->Cluster Markup:</h6><p>Replace the above initial markup with the following:</p><pre><code class=lang-html>&lt;article&gt; &lt;!-- Flexbox Cluster: column --&gt;
     &lt;div class=&quot;inner&quot;&gt;
         &lt;div class=&quot;flex-cluster&quot;&gt;
             &lt;div class=&quot;flex-content half column&quot;&gt;
@@ -215,9 +144,7 @@ article p { // adding this one as well
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/article&gt;
-</code></pre>
-<p>The flow of information can look a bit confusing, but it will make more sense when you look at the CSS:</p>
-<pre><code class="lang-css">/**
+</code></pre><p>The flow of information can look a bit confusing, but it will make more sense when you look at the CSS:</p><pre><code class=lang-css>/**
  * BONUS - Flexbox Clusters
  *
  * Any good masonry layout includes this to some degree. Why?
@@ -250,14 +177,4 @@ article p { // adding this one as well
 .flex-cluster .flex-content { flex:1 1 auto; }
 .flex-cluster .flex-content.half.column { flex:1 1 50%; }
 .flex-cluster .flex-content.half.column:first-child { margin-right:0.25rem; }
-</code></pre>
-<p>Now you can play around with different combinations of the clusters and get really interesting flows going.  Trying using this to your advantage!</p>
-<p>This is all the necessary CSS to make the clusters work properly.  Flexbox makes it incredibly easy to style a whole slew of elements without having to hack together uniform styles.  Essentially, the clusters consume the entire space of their element, then give their largest child element priority, then split the remaining space evenly amongst the rest while trying to conform to the largest child&#39;s dimensions.  I highly recommend reading the above mentioned articles to get a better understanding of Flexbox!</p>
-<h6 id="conclusion-">Conclusion:</h6>
-<p>To sum everything up, we basically mocked the style of any newspaper columns and provided our style twist.  This can provide efficient information to your users while keeping your stylesheet fairly small.  If it doesn&#39;t work, or you have some questions, just ask!</p>
-
-
-			</div>
-		</main>
-	</body>
-</html>
+</code></pre><p>Now you can play around with different combinations of the clusters and get really interesting flows going. Trying using this to your advantage!</p><p>This is all the necessary CSS to make the clusters work properly. Flexbox makes it incredibly easy to style a whole slew of elements without having to hack together uniform styles. Essentially, the clusters consume the entire space of their element, then give their largest child element priority, then split the remaining space evenly amongst the rest while trying to conform to the largest child&#39;s dimensions. I highly recommend reading the above mentioned articles to get a better understanding of Flexbox!</p><h6 id=conclusion->Conclusion:</h6><p>To sum everything up, we basically mocked the style of any newspaper columns and provided our style twist. This can provide efficient information to your users while keeping your stylesheet fairly small. If it doesn&#39;t work, or you have some questions, just ask!</p></div></main></body></html>

@@ -1,2 +1,2 @@
-webpackJsonp([1,0],[function(n,c,t){"use strict";t(1)},function(n,c){}]);
+webpackJsonp([1,0],[function(e,t,n){"use strict";n(1);var a=document.implementation.createHTMLDocument();"content"in a.createElement("template")&&!function(){var e=function t(){for(var e=document.querySelectorAll("a"),n=e.length;n--;)e[n].hostname===location.hostname&&(page(e[n].pathname,function(e){axios.get(e.pathname).then(function(e){var n=a.createElement("template");n.innerHTML=e.data,document.getElementById("app").innerHTML=n.content.getElementById("app").innerHTML,t()})}),e[n].addEventListener("click",function(e){e.preventDefault(),page(e.target.pathname)},!1))};e(),page()}()},function(e,t){}]);
 //# sourceMappingURL=bundle.js.map

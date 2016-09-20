@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>JavaScript Mock Single Page App Script - Portfolio</title><link rel=icon href="data:;base64,iVBORw0KGgo="><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js></script><style type=text/css>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{width:100%;height:2px;top:0;right:100%;z-index:2000;position:fixed;background-color:#6495ed}</style><link rel=stylesheet type=text/css href=https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css><link rel=stylesheet href=../../css/style.css></head><body><main id=app><input id=main-nav-toggle type=checkbox><label for=main-nav-toggle><span></span></label><nav id=main-nav><ul><li><a href=../../ >⌂</a></li><li><a href=../../tutorials/ class=active>Tutorials</a></li><li><a href=http://codepen.io/MirrorBytes/ >My CodePen</a></li><li><a href=https://github.com/MirrorBytes>My GitHub</a></li></ul></nav><div id=content><h3>JavaScript Mock Single Page App Script</h3><p class=drop-cap>Just to explain this tutorial a bit more in detail, I&#39;m writing it up. Today, I am sharing with you all a script that I use on a few of my projects. It basically makes a single page application out of a staticly generated website. Interesting fact, any projects this script is used on will keep the ability to be indexed by search engines. Also, resources that are used on every single page of the application will only be loaded ONCE...yeah, less bandwidth usage, smoother page transition, and an overall better experience. I see no loss here, but that&#39;s just my opinion. Time to move into the actual tutorial!</p><hr><p>For those of you that had not watched the video, or cannot, I shall state that the finished product of this tutorial is ready for production-level projects. For instance, I use it on my portfolio! Yes, this one!</p><h6 id=dependencies->Dependencies:</h6><ul><li><a href=https://visionmedia.github.io/page.js/ >PageJS</a></li><li><a href=https://github.com/mzabriskie/axios>AxiosJS</a></li></ul><h4 id=the-script->The Script:</h4><pre><code class=lang-javascript>let dom = document.implementation.createHTMLDocument()
+
+if(&#39;content&#39; in dom.createElement(&#39;template&#39;)) {
+    let startMockSPA = () =&gt; {
+        let links = document.querySelectorAll(&#39;a&#39;)
+
+        for(var i = links.length;i--;) {
+            if(links[i].hostname === location.hostname) {
+                page(links[i].pathname, (ctx) =&gt; {
+                    axios.get(ctx.pathname)
+                        .then((response) =&gt; {
+                            let diffPage = dom.createElement(&#39;template&#39;)
+                            diffPage.innerHTML = response.data
+
+                            document.getElementById(&#39;app&#39;).innerHTML = diffPage.content.getElementById(&#39;app&#39;).innerHTML
+
+                            startMockSPA()
+                        })
+                })
+
+                links[i].addEventListener(&#39;click&#39;, (e) =&gt; {
+                    e.preventDefault()
+
+                    page(e.target.pathname)
+                }, false)
+            }
+        }
+    }
+
+    startMockSPA()
+    page()
+}
+</code></pre><p>This is written in ES6, but even an ES5 version is extremely short in length. Let me explain this script in chunks:</p><h6 id=our-virtual-dom->Our Virtual DOM:</h6><pre><code class=lang-javascript>let dom = document.implementation.createHTMLDocument()
+</code></pre><p>Simply put, we&#39;re creating a new DOM to hold all requested documents.</p><h6 id=browser-test->Browser Test:</h6><pre><code class=lang-javascript>if(&#39;content&#39; in dom.createElement(&#39;template&#39;)) {
+    ...
+}
+</code></pre><p>Just seeing if the client&#39;s browser supports the <code>template</code> tag. If not, the fallback is to use the standard static navigation.</p><h6 id=link-testing->Link Testing:</h6><pre><code class=lang-javascript>let startMockSPA = () =&gt; {
+    let links = document.querySelectorAll(&#39;a&#39;)
+
+    for(var i = links.length;i--;) {
+        if(links[i].hostname === location.hostname) {
+            ...
+        }
+    }
+}
+</code></pre><p>This chunk does the following:</p><ol><li>Create a function called <code>startMockSPA</code>, we&#39;ll need to call this every page transition.</li><li>Grab all the links on the page, and cycle through them.</li><li>Check if the current link is internal (our website), if not, skip it.</li></ol><h6 id=define-page-and-create-access-link->Define Page, and Create Access Link:</h6><pre><code class=lang-javascript>page(links[i].pathname, (ctx) =&gt; {
+    ...
+})
+
+links[i].addEventListener(&#39;click&#39;, (e) =&gt; {
+    e.preventDefault()
+
+    page(e.target.pathname)
+}, false)
+</code></pre><p>Using PageJS, define what happens when a page is accessed using the pathname of the current link. After doing that, prevent the default action of the internal link, and access the page using PageJS.</p><h6 id=grab-requested-page->Grab Requested Page:</h6><pre><code class=lang-javascript>axios.get(ctx.pathname)
+    .then((response) =&gt; {
+        let diffPage = dom.createElement(&#39;template&#39;)
+        diffPage.innerHTML = response.data
+
+        document.getElementById(&#39;app&#39;).innerHTML = diffPage.content.getElementById(&#39;app&#39;).innerHTML
+
+        startMockSPA()
+    })
+</code></pre><p>This chunk does the following:</p><ol><li>Uses the accessed page&#39;s pathname to request the new page.</li><li>Place the response&#39;s data into a <code>template</code> to prevent resources from loading.</li><li>Set visual DOM&#39;s HTML to that of our virtual DOM&#39;s</li><li>Finally, call our function again to restart the process.</li></ol><h6 id=begin-from-the-end->Begin From the End:</h6><pre><code class=lang-javascript>startMockSPA()
+page()
+</code></pre><p>We need to initially call our created function, then call <code>page()</code> after. PageJS requires pages to be defined prior to starting. Make sure to start PageJS or some functionality will not work.</p><h6 id=conclusion->Conclusion:</h6><p>To sum it all up, this script creates a lighter application for both the client and the server. I see no downside here, yet someone will probably find one. I have had no issues with this script yet, but if I do, I will update this information promptly.</p></div><footer><nav id=footer-nav><ul><li><a href=../../ >⌂</a></li><li><a href=../../tutorials/ >Tutorials</a></li><li><a href=http://codepen.io/MirrorBytes/ >My CodePen</a></li><li><a href=https://github.com/MirrorBytes>My GitHub</a></li></ul></nav><div class=copyright>&copy;2016 MirrorBytes | All Rights Reserved</div></footer></main><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/page.js/1.7.1/page.min.js></script><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/axios/0.14.0/axios.min.js></script><script type=text/javascript src=../../js/shared.js></script><script type=text/javascript src=../../js/bundle.js></script></body></html>
